@@ -1,4 +1,4 @@
-var finances = [
+let finances = [
     ['Jan-2010', 867884],
     ['Feb-2010', 984655],
     ['Mar-2010', 322013],
@@ -86,3 +86,28 @@ var finances = [
     ['Jan-2017', 138230],
     ['Feb-2017', 671099]
 ];
+
+// 1. Find the total number of months in the data set
+//      - Need to filter out the strings from the number variables and print to console
+//      Note: Use a better method than just / 2 (and target only string output)
+//      - Could use the .filter function for this
+
+// let filteredMonths = finances.filter(name => typeof name === 'string');
+// console.log(filteredMonths.length);
+
+
+
+// 2. Figure out the net total amount of Profit/Losses over the entire period
+//      - Need to filter out the numbers and sum the total for each month
+
+// 3. Find the average amount of Profit/Losses over the entire period
+//      - With the sum of the months, divide the value by the amount of months to find average
+//          This could be stored as a new variable
+
+// 4. Print the greatest increase and decrease in profits over the entire period
+//      - This needs to show the date and amount for that month
+//      - Will need to be shown separately for greatest decrease and greatest increase.
+
+// HINT: How do you only print to the nearest 100th place, decimal-wise, in JavaScript.
+
+// FOR TESTING: could create a similar (smaller) dataset to test if math is correct.
