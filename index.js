@@ -107,7 +107,8 @@ let totalMonths = console.log("Total Months: " + finances.length);
 
 // console.log(filteredMonths);
 
-var array = [];
+var numFinances = [];
+var total = 0;
 
 
 for (var i = 0; i < finances.length; i++)
@@ -117,18 +118,21 @@ for (var i = 0; i < finances.length; i++)
         // Even numbers (months)
         if (j % 2 === 0)
         {
-            // console.log(fi 
+            //
         }
         if (j % 2 === 1)
         {
-
             //Push all of the totals into a new array
-            array.push(finances[i][j]);
+            numFinances.push(finances[i][j]);
+            total += finances[i][j];
         }
     }
 }
 
-console.log(array.length);
+console.log(numFinances.length);
+console.log(total);
+
+
 // console.log("$" + sum);
 
 // for (let i = 0; i < finances.length; i++)
