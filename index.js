@@ -89,16 +89,54 @@ let finances = [
 
 // 1. Find the total number of months in the data set
 //      - Need to filter out the strings from the number variables and print to console
-//      Note: Use a better method than just / 2 (and target only string output)
-//      - Could use the .filter function for this
+//      Note: Use a better method than just printing length (and target only string output)
+//      - Could use the .filter function for this to filter only strings with the arrays
 
 // let filteredMonths = finances.filter(name => typeof name === 'string');
 // console.log(filteredMonths.length);
 
-
+// Total months but no string validation
+let totalMonths = console.log("Total Months: " + finances.length);
 
 // 2. Figure out the net total amount of Profit/Losses over the entire period
 //      - Need to filter out the numbers and sum the total for each month
+
+// let sum = 0;
+
+// let filteredMonths = finances.filter(element => typeof element === 'number');
+
+// console.log(filteredMonths);
+
+var array = [];
+
+
+for (var i = 0; i < finances.length; i++)
+{
+    for (var j = 0; j < finances[i].length; j++)
+    {
+        // Even numbers (months)
+        if (j % 2 === 0)
+        {
+            // console.log(fi 
+        }
+        if (j % 2 === 1)
+        {
+
+            //Push all of the totals into a new array
+            array.push(finances[i][j]);
+        }
+    }
+}
+
+console.log(array.length);
+// console.log("$" + sum);
+
+// for (let i = 0; i < finances.length; i++)
+// {
+//     sum += finances[i];
+// }
+
+// console.log(sum);
 
 // 3. Find the average amount of Profit/Losses over the entire period
 //      - With the sum of the months, divide the value by the amount of months to find average
