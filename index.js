@@ -130,7 +130,7 @@ var result = {};
 //Better method for adding these to new arrays
 for (var i = 0; i < finances.length; i++)
 {
-    total = total + finances[i][1];
+    total += finances[i][1];
 
     numFinances.push(finances[i][1]);
     months.push(finances[i][0]);
@@ -138,6 +138,7 @@ for (var i = 0; i < finances.length; i++)
     // console.log("Total Array: " + numFinances)
     // console.log("Months Array: " + months);
 
+    // Key-value pair for result object
     result[months[i]] = numFinances[i];
 }
 
@@ -147,16 +148,53 @@ for (var i = 0; i < finances.length; i++)
 //     result[numFinances[i]] = months[i];
 // }
 
+console.log("$ " + total);
 console.log(months);
 console.log(numFinances);
 console.log(result);
 
 const resultValues = Object.values(result);
-const max = Math.max(...resultValues);
-const min = Math.min(...resultValues);
+const resultMonth = Object.keys(result);
 
-console.log("Largest Number is: " + max);
-console.log("Smallest Number is: " + min);
+var max = Math.max(...resultValues);
+var min = Math.min(...resultValues);
+
+// function getObjKey(obj, value)
+// {
+//     return Object.keys(obj).find(key => obj[key] === value);
+// }
+
+// const obj = (getObjKey(result, max))
+
+// console.log(o)
+
+
+// var index = resultValues.findIndex(function (result)
+// {
+//     return
+// }
+
+console.log(resultMonth);
+
+// console.log("Largest Number is: ");
+// console.log("Smallest Number is: " + min);
+
+//Loop - Key | Value
+for (var [monthName, monthResult] of Object.entries(result))
+{
+    if (max === monthResult)
+    {
+        console.log(monthName, monthResult);
+    }
+}
+
+console.log(max);
+
+// const key = Object.keys(obj).find(key => obj[key] === value);
+
+// console.log(result);
+
+// console.log("Index for max value is: " + maxIndex);
 
     // console.log(months);
     // console.log(numFinances);
@@ -166,7 +204,6 @@ console.log("Smallest Number is: " + min);
 // console.log('$' + total);
 
 // var average = total / numFinances.length;
-// var average = numFinances.reduce((a, b) => a + b, 0) / numFinances.length;
 
 // console.log('Average: ' + average);
 
