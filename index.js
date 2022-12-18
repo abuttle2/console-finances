@@ -108,6 +108,8 @@ var total = 0;
 var validNumbers = [];
 var averageArray = [];
 
+var result = {};
+
 //Filter through the matrix, add values to  new arrays
 // for (var i = 0; i < finances.length; i++)
 // {
@@ -128,20 +130,36 @@ var averageArray = [];
 //Better method for adding these to new arrays
 for (var i = 0; i < finances.length; i++)
 {
-    testTotal = testTotal + finances[i][1];
+    total = total + finances[i][1];
 
     numFinances.push(finances[i][1]);
     months.push(finances[i][0]);
 
     // console.log("Total Array: " + numFinances)
     // console.log("Months Array: " + months);
+
+    result[months[i]] = numFinances[i];
 }
 
+// for (var i = 0; i < numFinances.length; i++)
+// {
+//     // Key/Value pairs using existing loop (as the array length is the same)
+//     result[numFinances[i]] = months[i];
+// }
 
-// console.log(months);
-// console.log(numFinances);
+console.log(months);
+console.log(numFinances);
+console.log(result);
 
-var result = console.log(numFinances[1] - numFinances[0]);
+const resultValues = Object.values(result);
+const max = Math.max(...resultValues);
+const min = Math.min(...resultValues);
+
+console.log("Largest Number is: " + max);
+console.log("Smallest Number is: " + min);
+
+    // console.log(months);
+    // console.log(numFinances);
 
 
 // console.log(numFinances.length);
