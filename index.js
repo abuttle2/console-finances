@@ -108,27 +108,33 @@ var total = 0;
 var validNumbers = [];
 var averageArray = [];
 
+//Filter through the matrix, add values to  new arrays
+// for (var i = 0; i < finances.length; i++)
+// {
+//     for (var j = 0; j < finances[i].length; j++)
+//     {
+//         // Even numbers (months)
+//         if (j % 2 === 0)
+//         {
+//             months.push(finances[i][j]);
+//         }
+//         if (j % 2 === 1)
+//         {
+//             numFinances.push(finances[i][j]);
+//         }
+//     }
+// }
 
-// // Filter through the matrix, add values to a new array, and calculate profit/losses
+//Better method for adding these to new arrays
 for (var i = 0; i < finances.length; i++)
 {
-    for (var j = 0; j < finances[i].length; j++)
-    {
-        // Even numbers (months)
-        if (j % 2 === 0)
-        {
-            months.push(finances[i][j]);
-        }
-        if (j % 2 === 1)
-        {
-            //Push all of the totals into a new array
-            numFinances.push(finances[i][j]);
+    testTotal = testTotal + finances[i][1];
 
-            // i Only prints the whole array
-            // console.log(i, j, finances[i]);
-            // total += finances[i][j];
-        }
-    }
+    numFinances.push(finances[i][1]);
+    months.push(finances[i][0]);
+
+    // console.log("Total Array: " + numFinances)
+    // console.log("Months Array: " + months);
 }
 
 
