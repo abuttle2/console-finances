@@ -156,8 +156,8 @@ console.log(result);
 const resultValues = Object.values(result);
 const resultMonth = Object.keys(result);
 
-var max = Math.max(...resultValues);
-var min = Math.min(...resultValues);
+const max = Math.max(...resultValues);
+const min = Math.min(...resultValues);
 
 // function getObjKey(obj, value)
 // {
@@ -184,7 +184,11 @@ for (var [monthName, monthResult] of Object.entries(result))
 {
     if (max === monthResult)
     {
-        console.log(monthName, monthResult);
+        console.log("Greatest Increase in Profits: " + monthName, monthResult);
+    }
+    else if (min === monthResult)
+    {
+        console.log("Greatest Decrease in Profits: " + monthName, monthResult)
     }
 }
 
