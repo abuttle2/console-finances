@@ -1,4 +1,4 @@
-let finances = [
+var finances = [
     ['Jan-2010', 867884],
     ['Feb-2010', 984655],
     ['Mar-2010', 322013],
@@ -101,16 +101,15 @@ let totalMonths = console.log("Total Months: " + finances.length);
 // 2. Figure out the net total amount of Profit/Losses over the entire period
 //      - Need to filter out the numbers and sum the total for each month
 
-// let sum = 0;
-
-// let filteredMonths = finances.filter(element => typeof element === 'number');
-
-// console.log(filteredMonths);
-
 var numFinances = [];
+var months = [];
 var total = 0;
 
+var validNumbers = [];
+var averageArray = [];
 
+
+// // Filter through the matrix, add values to a new array, and calculate profit/losses
 for (var i = 0; i < finances.length; i++)
 {
     for (var j = 0; j < finances[i].length; j++)
@@ -118,29 +117,36 @@ for (var i = 0; i < finances.length; i++)
         // Even numbers (months)
         if (j % 2 === 0)
         {
-            //
+            months.push(finances[i][j]);
         }
         if (j % 2 === 1)
         {
             //Push all of the totals into a new array
             numFinances.push(finances[i][j]);
-            total += finances[i][j];
+
+            // i Only prints the whole array
+            // console.log(i, j, finances[i]);
+            // total += finances[i][j];
         }
     }
 }
 
-console.log(numFinances.length);
-console.log(total);
+
+// console.log(months);
+// console.log(numFinances);
+
+var result = console.log(numFinances[1] - numFinances[0]);
 
 
-// console.log("$" + sum);
+// console.log(numFinances.length);
+// console.log('$' + total);
 
-// for (let i = 0; i < finances.length; i++)
-// {
-//     sum += finances[i];
-// }
+// var average = total / numFinances.length;
+// var average = numFinances.reduce((a, b) => a + b, 0) / numFinances.length;
 
-// console.log(sum);
+// console.log('Average: ' + average);
+
+// console.log(numFinances);
 
 // 3. Find the average amount of Profit/Losses over the entire period
 //      - With the sum of the months, divide the value by the amount of months to find average
