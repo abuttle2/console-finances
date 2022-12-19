@@ -87,38 +87,19 @@ var finances = [
     ['Feb-2017', 671099]
 ];
 
-var totalMonths = console.log("Total Months: " + finances.length);
 var financeNumbers = [];
-var months = [];
+var financeMonths = [];
 var changeArray = [];
-
 var changeSum = 0;
 var currentChange = 0;
-
+var netTotal = 0;
 var changeObj = {};
 
-// Filter through the matrix, add values to new arrays
-// for (var i = 0; i < finances.length; i++)
-// {
-//     for (var j = 0; j < finances[i].length; j++)
-//     {
-//         // Even numbers (months)
-//         if (j % 2 === 0)
-//         {
-//             months.push(finances[i][j]);
-//         }
-//         if (j % 2 === 1)
-//         {
-//             financeNumbers.push(finances[i][j]);
-//         }
-//     }
-// }
-
-//Improved method for adding these to new arrays
 for (var i = 0; i < finances.length; i++)
 {
+    netTotal += finances[i][1];
     financeNumbers.push(finances[i][1]);
-    months.push(finances[i][0]);
+    financeMonths.push(finances[i][0]);
 }
 
 for (var i = 0; i < financeNumbers.length; i++)
@@ -131,7 +112,7 @@ for (var i = 0; i < financeNumbers.length; i++)
         // Add to the current change value to the sum
         changeSum += currentChange;
         // Key-value pair for change result object
-        changeObj[months[i]] = changeArray[i - 1];
+        changeObj[financeMonths[i]] = changeArray[i - 1];
     }
     else 
     {
@@ -139,25 +120,35 @@ for (var i = 0; i < financeNumbers.length; i++)
     }
 }
 
-var average = console.log("CHANGE SUM" + (changeSum / changeArray.length).toFixed(2));
-
 const resultValues = Object.values(changeObj);
 const resultMonth = Object.keys(changeObj);
 
 const max = Math.max(...resultValues);
 const min = Math.min(...resultValues);
 
-//Loop - Key | Value 
-for (var [monthName, monthResult] of Object.entries(changeObj))
+
+function logResults()
 {
-    switch (monthResult) 
+    console.log("Financial Analysis" +
+        "\n---------------------");
+    console.log("Total Months: " + finances.length);
+    console.log("Total " + "$" + netTotal);
+    console.log("Average Change: " + "$" + (changeSum / changeArray.length).toFixed(2));
+
+    //Loop key value pairs to find min and max values
+    for (var [monthName, monthResult] of Object.entries(changeObj))
     {
-        // Print greatest increase and decrease in profits
-        case max:
-            console.log("Greatest Increase in Profits:" + monthName + " ($" + monthResult + ")");
-            break;
-        case min:
-            console.log("Greatest Decrease in Profits: " + monthName + " ($" + monthResult + ")");
-            break;
+        switch (monthResult) 
+        {
+            // Print greatest increase and decrease in profits
+            case max:
+                console.log("Greatest Increase in Profits: " + monthName + " ($" + monthResult + ")");
+                break;
+            case min:
+                console.log("Greatest Decrease in Profits: " + monthName + " ($" + monthResult + ")");
+                break;
+        }
     }
 }
+
+logResults();
