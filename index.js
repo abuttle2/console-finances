@@ -134,25 +134,26 @@ var monthlyChange;
 
 for (var i = 0; i < numFinances.length; i++)
 {
-    if (i !== 0)
+    // Calculate the average monthly change. (-1 to remove first value/month)
+    if (i > 0)
     {
         monthlyChange = numFinances[i] - numFinances[i - 1];
+        changeArray.push(monthlyChange);
+        changeSum += monthlyChange;
+        // Key-value pair for change result object
+        changeResult[months[i]] = changeArray[i - 1];
     }
     else 
     {
         monthlyChange = 0;
     }
-
-    changeArray.push(monthlyChange);
-    changeSum += monthlyChange;
-
-    // Key-value pair for change result object
-    changeResult[months[i]] = changeArray[i];
 }
 
 console.log(changeResult);
-console.log("CHANGE SUM" + changeSum / changeArray.length);
+var average = console.log("CHANGE SUM" + (changeSum / changeArray.length).toFixed(2));
 console.log(total);
+
+var testSum = changeSum / changeArray.length
 
 
 const resultValues = Object.values(changeResult);
@@ -161,20 +162,23 @@ const resultMonth = Object.keys(changeResult);
 const max = Math.max(...resultValues);
 const min = Math.min(...resultValues);
 
-//Loop - Key | Value
+//Loop - Key | Value 
 for (var [monthName, monthResult] of Object.entries(changeResult))
 {
     switch (monthResult) 
     {
         // Print greatest increase and decrease in profits
         case max:
-            console.log("Greatest Increase in Profits: " + monthName + " ($" + monthResult + ")");
+            console.log("Greatest Increase in Profits:" + monthName + " ($" + monthResult + ")");
             break;
         case min:
             console.log("Greatest Decrease in Profits: " + monthName + " ($" + monthResult + ")");
             break;
     }
+
+
 }
+
 
 // 3. Find the average amount of Profit/Losses over the entire period
 //      - With the sum of the months, divide the value by the amount of months to find average
