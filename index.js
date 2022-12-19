@@ -87,28 +87,14 @@ var finances = [
     ['Feb-2017', 671099]
 ];
 
-// 1. Find the total number of months in the data set
-//      - Need to filter out the strings from the number variables and print to console
-//      Note: Use a better method than just printing length (and target only string output)
-//      - Could use the .filter function for this to filter only strings with the arrays
-
-// let filteredMonths = finances.filter(name => typeof name === 'string');
-// console.log(filteredMonths.length);
-
 // Total months but no string validation
 let totalMonths = console.log("Total Months: " + finances.length);
-
-// 2. Figure out the net total amount of Profit/Losses over the entire period
-//      - Need to filter out the numbers and sum the total for each month
 
 var numFinances = [];
 var months = [];
 var total = 0;
-
 var result = {};
-
 var changeResult = {};
-
 var changeArray = [];
 var changeSum = 0;
 
@@ -164,9 +150,9 @@ for (var i = 0; i < numFinances.length; i++)
     changeResult[months[i]] = changeArray[i];
 }
 
-
 console.log(changeResult);
 console.log("CHANGE SUM" + changeSum / changeArray.length);
+console.log(total);
 
 
 const resultValues = Object.values(changeResult);
@@ -174,31 +160,6 @@ const resultMonth = Object.keys(changeResult);
 
 const max = Math.max(...resultValues);
 const min = Math.min(...resultValues);
-
-console.log(max);
-console.log(min);
-
-
-// const newMax = Math.max(changeArray);
-
-// function getObjKey(obj, value)
-// {
-//     return Object.keys(obj).find(key => obj[key] === value);
-// }
-
-// const obj = (getObjKey(result, max))
-
-// console.log(o)
-
-
-// var index = resultValues.findIndex(function (result)
-// {
-//     return
-// }
-
-// console.log(resultMonth);
-// console.log("Largest Number is: ");
-// console.log("Smallest Number is: " + min);
 
 //Loop - Key | Value
 for (var [monthName, monthResult] of Object.entries(changeResult))
@@ -214,25 +175,6 @@ for (var [monthName, monthResult] of Object.entries(changeResult))
             break;
     }
 }
-
-// const key = Object.keys(obj).find(key => obj[key] === value);
-
-// console.log(result);
-
-// console.log("Index for max value is: " + maxIndex);
-
-    // console.log(months);
-    // console.log(numFinances);
-
-
-// console.log(numFinances.length);
-// console.log('$' + total);
-
-// var average = total / numFinances.length;
-
-// console.log('Average: ' + average);
-
-// console.log(numFinances);
 
 // 3. Find the average amount of Profit/Losses over the entire period
 //      - With the sum of the months, divide the value by the amount of months to find average
