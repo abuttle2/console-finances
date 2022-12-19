@@ -87,18 +87,17 @@ var finances = [
     ['Feb-2017', 671099]
 ];
 
-// Total months but no string validation
-let totalMonths = console.log("Total Months: " + finances.length);
-
-var numFinances = [];
+var totalMonths = console.log("Total Months: " + finances.length);
+var financeNumbers = [];
 var months = [];
-var total = 0;
-var result = {};
-var changeResult = {};
 var changeArray = [];
-var changeSum = 0;
 
-// Filter through the matrix, add values to  new arrays
+var changeSum = 0;
+var currentChange = 0;
+
+var changeObj = {};
+
+// Filter through the matrix, add values to new arrays
 // for (var i = 0; i < finances.length; i++)
 // {
 //     for (var j = 0; j < finances[i].length; j++)
@@ -110,60 +109,46 @@ var changeSum = 0;
 //         }
 //         if (j % 2 === 1)
 //         {
-//             numFinances.push(finances[i][j]);
+//             financeNumbers.push(finances[i][j]);
 //         }
 //     }
 // }
 
-//Better method for adding these to new arrays
+//Improved method for adding these to new arrays
 for (var i = 0; i < finances.length; i++)
 {
-    total += finances[i][1];
-
-    numFinances.push(finances[i][1]);
+    financeNumbers.push(finances[i][1]);
     months.push(finances[i][0]);
-
-    // console.log("Total Array: " + numFinances)
-    // console.log("Months Array: " + months);
-
-    // Key-value pair for result object
-    result[months[i]] = numFinances[i];
 }
 
-var monthlyChange;
-
-for (var i = 0; i < numFinances.length; i++)
+for (var i = 0; i < financeNumbers.length; i++)
 {
-    // Calculate the average monthly change. (-1 to remove first value/month)
+    // Calculate the average monthly change. (> 0 to exclude first month )
     if (i > 0)
     {
-        monthlyChange = numFinances[i] - numFinances[i - 1];
-        changeArray.push(monthlyChange);
-        changeSum += monthlyChange;
+        currentChange = financeNumbers[i] - financeNumbers[i - 1];
+        changeArray.push(currentChange);
+        // Add to the current change value to the sum
+        changeSum += currentChange;
         // Key-value pair for change result object
-        changeResult[months[i]] = changeArray[i - 1];
+        changeObj[months[i]] = changeArray[i - 1];
     }
     else 
     {
-        monthlyChange = 0;
+        currentChange = 0;
     }
 }
 
-console.log(changeResult);
 var average = console.log("CHANGE SUM" + (changeSum / changeArray.length).toFixed(2));
-console.log(total);
 
-var testSum = changeSum / changeArray.length
-
-
-const resultValues = Object.values(changeResult);
-const resultMonth = Object.keys(changeResult);
+const resultValues = Object.values(changeObj);
+const resultMonth = Object.keys(changeObj);
 
 const max = Math.max(...resultValues);
 const min = Math.min(...resultValues);
 
 //Loop - Key | Value 
-for (var [monthName, monthResult] of Object.entries(changeResult))
+for (var [monthName, monthResult] of Object.entries(changeObj))
 {
     switch (monthResult) 
     {
@@ -175,19 +160,4 @@ for (var [monthName, monthResult] of Object.entries(changeResult))
             console.log("Greatest Decrease in Profits: " + monthName + " ($" + monthResult + ")");
             break;
     }
-
-
 }
-
-
-// 3. Find the average amount of Profit/Losses over the entire period
-//      - With the sum of the months, divide the value by the amount of months to find average
-//          This could be stored as a new variable
-
-// 4. Print the greatest increase and decrease in profits over the entire period
-//      - This needs to show the date and amount for that month
-//      - Will need to be shown separately for greatest decrease and greatest increase.
-
-// HINT: How do you only print to the nearest 100th place, decimal-wise, in JavaScript.
-
-// FOR TESTING: could create a similar (smaller) dataset to test if math is correct.
