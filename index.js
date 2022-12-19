@@ -105,12 +105,14 @@ var numFinances = [];
 var months = [];
 var total = 0;
 
-var validNumbers = [];
-var averageArray = [];
-
 var result = {};
 
-//Filter through the matrix, add values to  new arrays
+var changeResult = {};
+
+var changeArray = [];
+var changeSum = 0;
+
+// Filter through the matrix, add values to  new arrays
 // for (var i = 0; i < finances.length; i++)
 // {
 //     for (var j = 0; j < finances[i].length; j++)
@@ -142,22 +144,38 @@ for (var i = 0; i < finances.length; i++)
     result[months[i]] = numFinances[i];
 }
 
-// for (var i = 0; i < numFinances.length; i++)
-// {
-//     // Key/Value pairs using existing loop (as the array length is the same)
-//     result[numFinances[i]] = months[i];
-// }
+var monthlyChange;
 
-console.log("$ " + total);
-console.log(months);
-console.log(numFinances);
-console.log(result);
+for (var i = 0; i < numFinances.length; i++)
+{
+    if (i !== 0)
+    {
+        monthlyChange = numFinances[i] - numFinances[i - 1];
+    }
+    else 
+    {
+        monthlyChange = 0;
+    }
 
-const resultValues = Object.values(result);
-const resultMonth = Object.keys(result);
+    changeArray.push(monthlyChange);
+    changeSum += monthlyChange;
+
+    // Key-value pair for change result object
+    changeResult[months[i]] = changeArray[i];
+}
+
+
+const resultValues = Object.values(changeResult);
+const resultMonth = Object.keys(changeResult);
 
 const max = Math.max(...resultValues);
 const min = Math.min(...resultValues);
+
+console.log(max);
+console.log(min);
+
+
+// const newMax = Math.max(changeArray);
 
 // function getObjKey(obj, value)
 // {
@@ -174,25 +192,24 @@ const min = Math.min(...resultValues);
 //     return
 // }
 
-console.log(resultMonth);
-
+// console.log(resultMonth);
 // console.log("Largest Number is: ");
 // console.log("Smallest Number is: " + min);
 
 //Loop - Key | Value
-for (var [monthName, monthResult] of Object.entries(result))
+for (var [monthName, monthResult] of Object.entries(changeResult))
 {
-    if (max === monthResult)
+    switch (monthResult) 
     {
-        console.log("Greatest Increase in Profits: " + monthName, monthResult);
-    }
-    else if (min === monthResult)
-    {
-        console.log("Greatest Decrease in Profits: " + monthName, monthResult)
+        // Print greatest increase and decrease in profits
+        case max:
+            console.log("Greatest Increase in Profits: " + monthName + " ($" + monthResult + ")");
+            break;
+        case min:
+            console.log("Greatest Decrease in Profits: " + monthName + " ($" + monthResult + ")");
+            break;
     }
 }
-
-console.log(max);
 
 // const key = Object.keys(obj).find(key => obj[key] === value);
 
