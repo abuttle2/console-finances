@@ -165,6 +165,10 @@ for (var i = 0; i < numFinances.length; i++)
 }
 
 
+console.log(changeResult);
+console.log("CHANGE SUM" + changeSum / changeArray.length);
+
+
 const resultValues = Object.values(changeResult);
 const resultMonth = Object.keys(changeResult);
 
