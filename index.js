@@ -91,10 +91,10 @@ var financeNumbers = [];
 var financeMonths = [];
 var changeArray = [];
 var changeSum = 0;
-var currentChange = 0;
 var netTotal = 0;
 var changeObj = {};
 
+// Push months and finances to separate arrays
 for (var i = 0; i < finances.length; i++)
 {
     netTotal += finances[i][1];
@@ -107,7 +107,7 @@ for (var i = 0; i < financeNumbers.length; i++)
     // Calculate the average monthly change. (> 0 to exclude first month )
     if (i > 0)
     {
-        currentChange = financeNumbers[i] - financeNumbers[i - 1];
+        var currentChange = financeNumbers[i] - financeNumbers[i - 1];
         changeArray.push(currentChange);
         // Add to the current change value to the sum
         changeSum += currentChange;
@@ -123,16 +123,16 @@ for (var i = 0; i < financeNumbers.length; i++)
 const resultValues = Object.values(changeObj);
 const resultMonth = Object.keys(changeObj);
 
+// Min and max for object values
 const max = Math.max(...resultValues);
 const min = Math.min(...resultValues);
-
 
 function logResults()
 {
     console.log("Financial Analysis" +
         "\n---------------------");
     console.log("Total Months: " + finances.length);
-    console.log("Total " + "$" + netTotal);
+    console.log("Total: " + "$" + netTotal);
     console.log("Average Change: " + "$" + (changeSum / changeArray.length).toFixed(2));
 
     //Loop key value pairs to find min and max values
