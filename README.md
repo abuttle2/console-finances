@@ -20,9 +20,9 @@ Example output from current data:
 
 ## Usage
 
-This can be used for financial data that is stored as a multidimensional array, incluing months and the amount.
+This can be used for financial data that is stored as a multidimensional array, including months and the amount.
 
-Licence
+## Licence
 
 This project uses the MIT License.
 
