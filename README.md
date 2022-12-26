@@ -28,4 +28,4 @@ This project uses the MIT License.
 
 ## Link
 
-https://abuttle2.github.io/console-finances/ **(Requires inspecting the page to see console output)
+https://abuttle2.github.io/console-finances/ **(Requires inspecting the page to see console output)**
