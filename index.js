@@ -87,18 +87,6 @@ var finances = [
     ['Feb-2017', 671099]
 ];
 
-var testData = [
-    ['Jan-2010', 1],
-    ['Feb-2010', 45631],
-    ['Mar-2010', 422013],
-    ['Apr-2010', -69417],
-    ['May-2010', 36503],
-    ['Jun-2010', 857],
-    ['Jul-2010', 10555096],
-    ['Aug-2010', 604885],
-    ['Sep-2010', -111386],
-];
-
 // Takes in a multidimensional array to calculate data.
 const calculateFinances = (data) =>
 {
