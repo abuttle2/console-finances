@@ -87,68 +87,97 @@ var finances = [
     ['Feb-2017', 671099]
 ];
 
-var financeNumbers = [];
-var financeMonths = [];
-var changeArray = [];
-var changeSum = 0;
-var netTotal = 0;
-var changeObj = {};
+var testData = [
+    ['Jan-2010', 1],
+    ['Feb-2010', 45631],
+    ['Mar-2010', 422013],
+    ['Apr-2010', -69417],
+    ['May-2010', 36503],
+    ['Jun-2010', 857],
+    ['Jul-2010', 10555096],
+    ['Aug-2010', 604885],
+    ['Sep-2010', -111386],
+];
 
-// Push months and finances to separate arrays
-for (var i = 0; i < finances.length; i++)
+// Takes in a multidimensional array to calculate data.
+const calculateFinances = (data) =>
 {
-    netTotal += finances[i][1];
-    financeNumbers.push(finances[i][1]);
-    financeMonths.push(finances[i][0]);
-}
+    let netTotal = 0;
+    let financeNumbers = [];
+    let financeMonths = [];
+    let changeArray = [];
+    let changeSum = 0;
+    let changeObj = {};
 
-for (var i = 0; i < financeNumbers.length; i++)
-{
-    // Calculate the average monthly change. (> 0 to exclude first month )
-    if (i > 0)
+    const separateData = () =>
     {
-        var currentChange = financeNumbers[i] - financeNumbers[i - 1];
-        changeArray.push(currentChange);
-        // Add to the current change value to the sum
-        changeSum += currentChange;
-        // Key-value pair for change result object
-        changeObj[financeMonths[i]] = changeArray[i - 1];
-    }
-    else 
-    {
-        currentChange = 0;
-    }
-}
-
-const resultValues = Object.values(changeObj);
-const resultMonth = Object.keys(changeObj);
-
-// Min and max for object values
-const max = Math.max(...resultValues);
-const min = Math.min(...resultValues);
-
-function logResults()
-{
-    console.log("Financial Analysis" +
-        "\n---------------------");
-    console.log("Total Months: " + finances.length);
-    console.log("Total: " + "$" + netTotal);
-    console.log("Average Change: " + "$" + (changeSum / changeArray.length).toFixed(2));
-
-    //Loop key value pairs to find min and max values
-    for (var [monthName, monthResult] of Object.entries(changeObj))
-    {
-        switch (monthResult) 
+        if (Array.isArray(data))
         {
-            // Print greatest increase and decrease in profits
-            case max:
-                console.log("Greatest Increase in Profits: " + monthName + " ($" + monthResult + ")");
-                break;
-            case min:
-                console.log("Greatest Decrease in Profits: " + monthName + " ($" + monthResult + ")");
-                break;
+            // Push months and finances to separate arrays
+            for (let i = 0; i < data.length; i++)
+            {
+                netTotal += data[i][1];
+                financeNumbers.push(data[i][1]);
+                financeMonths.push(data[i][0]);
+            }
+        }
+        else
+        {
+            throw new Error("Please ensure valid data is provided.");
         }
     }
+    const calculateAverage = () =>
+    {
+        for (let i = 0; i < financeNumbers.length; i++)
+        {
+            // Calculate the average monthly change. (> 0 to exclude first month )
+            if (i > 0)
+            {
+                let currentChange = financeNumbers[i] - financeNumbers[i - 1];
+                changeArray.push(currentChange);
+                // Add to the current change value to the sum
+                changeSum += currentChange;
+                // Key-value pair for change result object
+                changeObj[financeMonths[i]] = changeArray[i - 1];
+            }
+            else 
+            {
+                currentChange = 0;
+            }
+        }
+    }
+    const logResults = () =>
+    {
+        const resultValues = Object.values(changeObj);
+        // Min and max for object values
+        const max = Math.max(...resultValues);
+        const min = Math.min(...resultValues);
+
+        console.log("Financial Analysis" +
+            "\n---------------------");
+        console.log("Total Months: " + data.length);
+        console.log("Total: " + "$" + netTotal);
+        console.log("Average Change: " + "$" + (changeSum / changeArray.length).toFixed(2));
+
+        //Loop key value pairs to find min and max values
+        for (let [monthName, monthResult] of Object.entries(changeObj))
+        {
+            switch (monthResult) 
+            {
+                // Print greatest increase and decrease in profits
+                case max:
+                    console.log("Greatest Increase in Profits: " + monthName + " ($" + monthResult + ")");
+                    break;
+                case min:
+                    console.log("Greatest Decrease in Profits: " + monthName + " ($" + monthResult + ")");
+                    break;
+            }
+        }
+    }
+
+    separateData();
+    calculateAverage();
+    logResults();
 }
 
-logResults();
+calculateFinances(finances);
